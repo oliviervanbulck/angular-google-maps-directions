@@ -10,12 +10,11 @@ export class AppComponent {
   destination = '';
   lat = 51.1887493;
   lng = 4.4586847;
-  travelMode = 'WALKING';
+  travelMode = 'DRIVING';
   distance: number;
   duration: number;
   steps = [];
   getRoute = (origin: string, dest: string, travelMode: string): void => {
-    console.log('test');
     this.origin = origin;
     this.destination = dest;
     this.travelMode = travelMode;

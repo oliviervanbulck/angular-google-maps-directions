@@ -13,14 +13,14 @@
   </label><br /><br />
   <label>
     Vervoersmiddel
-    <select #travelModeInput (change)="setType($event.target.value)">
+    <select #travelModeInput>
       <option value="DRIVING">Auto</option>
       <option value="WALKING">Te voet</option>
       <option value="BICYCLING">Fiets</option>
       <option value="TRANSIT">Openbaar vervoer</option>
     </select>
   </label><br /><br />
-  <input type="submit" value="Route" (click)="getRoute(originInput.value, destinationInput.value, travelModeInput.value)" /><!--(click)="getRoute(originInput.value, destinationInput.value)"-->
+  <input type="submit" value="Route" (click)="getRoute(originInput.value, destinationInput.value, travelModeInput.value)" />
   <br /><br />
   <div [hidden]="!distance || !duration">
     <h3>Afstand</h3>

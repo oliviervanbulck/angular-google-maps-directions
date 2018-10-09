@@ -1,0 +1,39 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="wrapper">
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-direction [origin]="origin" [destination]="destination" (onChange)="onChangeRoute($event)" [travelMode]="travelMode"></agm-direction>
+  </agm-map><br />
+  <label>
+    Startlocatie
+    <input type="text" name="origin" #originInput />
+  </label><br /><br />
+  <label>
+    Eindlocatie
+    <input type="text" name="destination" #destinationInput />
+  </label><br /><br />
+  <label>
+    Vervoersmiddel
+    <select #travelModeInput (change)="setType($event.target.value)">
+      <option value="DRIVING">Auto</option>
+      <option value="WALKING">Te voet</option>
+      <option value="BICYCLING">Fiets</option>
+      <option value="TRANSIT">Openbaar vervoer</option>
+    </select>
+  </label><br /><br />
+  <input type="submit" value="Route" (click)="getRoute(originInput.value, destinationInput.value, travelModeInput.value)" /><!--(click)="getRoute(originInput.value, destinationInput.value)"-->
+  <br /><br />
+  <div [hidden]="!distance || !duration">
+    <h3>Afstand</h3>
+    <p>{{distance / 1000 | number : '1.2-2'}} km</p>
+    <h3>Duur</h3>
+    <p>{{duration | duration : 'uur' : 'min' : 'sec'}}</p>
+    <h3>Stappen</h3>
+    <p><b>Aantal: </b>{{steps.length}}</p>
+    <p *ngFor="let step of steps">
+      <b>Afstand: </b>{{step.distance.text}}<br />
+      <b>Duur: </b>{{step.duration.value | duration : 'uur' : 'min' : 'sec'}}<br />
+      <b>Instructie: </b><span [innerHtml]="step.instructions"></span>
+    </p>
+  </div>
+</div>
+
